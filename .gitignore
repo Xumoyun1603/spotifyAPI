@@ -1,3 +1,12 @@
+.idea/
+.idea/.gitignore
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/spotifyAPI.iml
+.idea/vcs.xml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -130,12 +139,3 @@ dmypy.json
 
 Pipfile
 Pipfile.lock
-
-.idea/
-.idea/.gitignore
-.idea/inspectionProfiles/Project_Default.xml
-.idea/inspectionProfiles/profiles_settings.xml
-.idea/misc.xml
-.idea/modules.xml
-.idea/spotifyAPI.iml
-.idea/vcs.xml
