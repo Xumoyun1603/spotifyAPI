@@ -127,7 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-.idea/
+
 Pipfile
 Pipfile.lock
-.idea
+
+.idea/
+.idea/.gitignore
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/spotifyAPI.iml
+.idea/vcs.xml
