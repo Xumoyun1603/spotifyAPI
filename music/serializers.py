@@ -23,7 +23,7 @@ class SongSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Song
-        fields = ('id', 'album', 'title', 'cover', 'source')
+        fields = ('id', 'album', 'title', 'cover', 'source', 'listened')
 
     def validate_source(self, value):
 
