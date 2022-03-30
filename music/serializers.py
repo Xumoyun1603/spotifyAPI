@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from music.models import Song, Album, Artist
+from music.models import Song, Album, Artist, Comment
 
 
 class ArtistSerializer(serializers.ModelSerializer):
@@ -31,3 +31,9 @@ class SongSerializer(serializers.ModelSerializer):
             raise ValidationError(detail='Mp3 file is required')
 
         return value
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = '__all__'

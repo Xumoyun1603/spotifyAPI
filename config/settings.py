@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     # tashqi app
     'rest_framework',
+    'rest_framework.authtoken',
 
     # local app
     'music.apps.MusicConfig',
