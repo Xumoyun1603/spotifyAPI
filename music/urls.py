@@ -8,9 +8,9 @@ from .views import (
 )
 
 router = DefaultRouter()
-router.register('songs', SongViewSet)
-router.register('albums', AlbumViewSet)
-router.register('artists', ArtistViewSet)
+router.register('songs', SongViewSet, "songs")
+router.register('albums', AlbumViewSet, "albums")
+router.register('artists', ArtistViewSet, "artists")
 
 urlpatterns = [
     path('', include(router.urls)),

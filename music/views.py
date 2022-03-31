@@ -1,3 +1,6 @@
+from django.contrib.postgres.search import TrigramSimilarity
+from django.db.models.functions import Greatest
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
@@ -6,6 +9,7 @@ from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
+from rest_framework import filters
 
 from django.db import transaction
 from django.shortcuts import get_object_or_404
@@ -17,11 +21,29 @@ from music.serializers import (
 
 
 class SongViewSet(ModelViewSet):
-    queryset = Song.objects.all()
     serializer_class = SongSerializer
     pagination_class = LimitOffsetPagination
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAuthenticated,)
+
+    # filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    filter_backends = (filters.OrderingFilter,)
+    ordering_fields = ("listened", "-listened")
+    # search_fields = ("title", "album__artist__name", "album__title")
+
+    def get_queryset(self):
+        queryset = Song.objects.all()
+        query = self.request.query_params.get('search')
+
+        if (query is not None) and query != '':
+            queryset = Song.objects.annotate(
+                similarity=Greatest(
+                    TrigramSimilarity('title', query),
+                    TrigramSimilarity('album__artist__name', query),
+                )
+            ).filter(similarity__gt=0.4).order_by('-similarity')
+
+        return queryset
 
     @action(detail=True, methods=['POST'])
     def listen(self, request, *args, **kwargs):
