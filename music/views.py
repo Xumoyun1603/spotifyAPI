@@ -1,6 +1,5 @@
 from django.contrib.postgres.search import TrigramSimilarity
 from django.db.models.functions import Greatest
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
