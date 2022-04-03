@@ -12,6 +12,8 @@ services:
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
 
   db:
     image: postgres:14
